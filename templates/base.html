@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="lv">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="shortcut icon" href="{{url_for('static', filename='/images/favicon.png')}}" type="image/x-icon">
+    <link rel="stylesheet" href="{{url_for('static', filename='style1.css')}}">
+    <title>Evelīnas mīļāko varoņu enciklopēdija</title>
+
+</head>
+
+<body>
+    <header>
+        <h1>Evelīnas mīļāko varoņu enciklopēdija</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Sākums</a></li>
+                <li><a href="/heroes">Varoņi</a></li>
+                <li><a href="/teams">Komandas</a></li>
+                <li><a href="/merch">Merch</a></li>
+                <li><a href="/powers">Spējas</a></li>
+                <li><a href="/review">Atsauksmes</a></li>
+                <li><a href="/addreview">Pievieno atsauksmes!</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <p>&copy; Evelīna Briede 12.i2</p>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,4 @@
+CREATE TABLE parent (
+    id INTEGER PRIMARY KEY,
+    h TEXT UNIQUE
+);

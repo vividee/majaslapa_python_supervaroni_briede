@@ -1,0 +1,38 @@
+{
+	"folders": {},
+	"connections": {
+		"sqlite_jdbc-19de39dfca7-158850b60f8f7a02": {
+			"provider": "sqlite",
+			"driver": "sqlite_jdbc",
+			"name": "database_sv_eb",
+			"save-password": true,
+			"configuration": {
+				"database": "C:\\Users\\bried\\Documents\\python_majaslapa_sv\\database\\database_sv_eb",
+				"url": "jdbc:sqlite:C:\\Users\\bried\\Documents\\python_majaslapa_sv\\database\\database_sv_eb",
+				"configurationType": "MANUAL",
+				"type": "dev",
+				"closeIdleConnection": true,
+				"properties": {
+					"foreign_keys": "true"
+				}
+			}
+		}
+	},
+	"virtual-models": {"sqlite_jdbc-19de39dfca7-158850b60f8f7a02":{"@properties":{"erd.diagram.state":{"serialized":"\u003cdiagram version\u003d\"1\" name\u003d\"empty\" time\u003d\"202605012249\"\u003e\u003centities\u003e\u003cdata-source id\u003d\"sqlite_jdbc-19de39dfca7-158850b60f8f7a02\"\u003e\u003centity id\u003d\"1\" name\u003d\"catagory\" fq-name\u003d\"catagory\" order\u003d\"0\" x\u003d\"692\" y\u003d\"274\"/\u003e\u003centity id\u003d\"2\" name\u003d\"hero_powers\" fq-name\u003d\"hero_powers\" order\u003d\"1\" x\u003d\"40\" y\u003d\"159\"/\u003e\u003centity id\u003d\"3\" name\u003d\"hero_teams\" fq-name\u003d\"hero_teams\" order\u003d\"2\" x\u003d\"40\" y\u003d\"326\"/\u003e\u003centity id\u003d\"4\" name\u003d\"heroes\" fq-name\u003d\"heroes\" order\u003d\"3\" x\u003d\"273\" y\u003d\"220\"/\u003e\u003centity id\u003d\"5\" name\u003d\"merch\" fq-name\u003d\"merch\" order\u003d\"4\" x\u003d\"498\" y\u003d\"276\"/\u003e\u003centity id\u003d\"6\" name\u003d\"powers\" fq-name\u003d\"powers\" order\u003d\"5\" x\u003d\"258\" y\u003d\"60\"/\u003e\u003centity id\u003d\"7\" name\u003d\"teams\" fq-name\u003d\"teams\" order\u003d\"6\" x\u003d\"307\" y\u003d\"461\"/\u003e\u003c/data-source\u003e\u003c/entities\u003e\u003crelations\u003e\u003crelation name\u003d\"merch_catagory_FK\" fq-name\u003d\"merch.merch_catagory_FK\" type\u003d\"fk\" pk-ref\u003d\"1\" fk-ref\u003d\"5\"/\u003e\u003crelation name\u003d\"hero_powers_heroes_FK\" fq-name\u003d\"hero_powers.hero_powers_heroes_FK\" type\u003d\"fk\" pk-ref\u003d\"4\" fk-ref\u003d\"2\"/\u003e\u003crelation name\u003d\"hero_teams_heroes_FK\" fq-name\u003d\"hero_teams.hero_teams_heroes_FK\" type\u003d\"fk\" pk-ref\u003d\"4\" fk-ref\u003d\"3\"/\u003e\u003crelation name\u003d\"merch_heroes_FK\" fq-name\u003d\"merch.merch_heroes_FK\" type\u003d\"fk\" pk-ref\u003d\"4\" fk-ref\u003d\"5\"/\u003e\u003crelation name\u003d\"hero_powers_powers_FK\" fq-name\u003d\"hero_powers.hero_powers_powers_FK\" type\u003d\"fk\" pk-ref\u003d\"6\" fk-ref\u003d\"2\"/\u003e\u003crelation name\u003d\"hero_teams_teams_FK\" fq-name\u003d\"hero_teams.hero_teams_teams_FK\" type\u003d\"fk\" pk-ref\u003d\"7\" fk-ref\u003d\"3\"/\u003e\u003crelation name\u003d\"merch_teams_FK\" fq-name\u003d\"merch.merch_teams_FK\" type\u003d\"fk\" pk-ref\u003d\"7\" fk-ref\u003d\"5\"/\u003e\u003c/relations\u003e\u003c/diagram\u003e"}},":heroes":{"description":"hero_name","properties":{"erd.diagram.state":{"serialized":"\u003cdiagram version\u003d\"1\" name\u003d\"empty\" time\u003d\"202605012121\"\u003e\u003centities\u003e\u003cdata-source id\u003d\"sqlite_jdbc-19de39dfca7-158850b60f8f7a02\"\u003e\u003centity id\u003d\"1\" name\u003d\"heroes\" fq-name\u003d\"heroes\" order\u003d\"0\" color-bg\u003d\"128,64,32\" x\u003d\"364\" y\u003d\"160\"/\u003e\u003centity id\u003d\"2\" name\u003d\"hero_teams\" fq-name\u003d\"hero_teams\" order\u003d\"1\" border-width\u003d\"3\" x\u003d\"156\" y\u003d\"162\"/\u003e\u003c/data-source\u003e\u003c/entities\u003e\u003crelations\u003e\u003crelation name\u003d\"hero_teams_heroes_FK\" fq-name\u003d\"hero_teams.hero_teams_heroes_FK\" type\u003d\"fk\" pk-ref\u003d\"1\" fk-ref\u003d\"2\"/\u003e\u003crelation name\u003d\"hero_teams_heroes_FK\" fq-name\u003d\"hero_teams.hero_teams_heroes_FK\" type\u003d\"fk\" pk-ref\u003d\"1\" fk-ref\u003d\"2\"/\u003e\u003crelation name\u003d\"hero_teams_heroes_FK\" fq-name\u003d\"hero_teams.hero_teams_heroes_FK\" type\u003d\"fk\" pk-ref\u003d\"1\" fk-ref\u003d\"2\"/\u003e\u003crelation name\u003d\"hero_teams_heroes_FK\" fq-name\u003d\"hero_teams.hero_teams_heroes_FK\" type\u003d\"fk\" pk-ref\u003d\"1\" fk-ref\u003d\"2\"/\u003e\u003crelation name\u003d\"hero_teams_heroes_FK\" fq-name\u003d\"hero_teams.hero_teams_heroes_FK\" type\u003d\"fk\" pk-ref\u003d\"1\" fk-ref\u003d\"2\"/\u003e\u003crelation name\u003d\"hero_teams_heroes_FK\" fq-name\u003d\"hero_teams.hero_teams_heroes_FK\" type\u003d\"fk\" pk-ref\u003d\"1\" fk-ref\u003d\"2\"/\u003e\u003c/relations\u003e\u003c/diagram\u003e"}}},":powers":{"description":"power_name"},":merch":{"properties":{"erd.diagram.state":{"serialized":"\u003cdiagram version\u003d\"1\" name\u003d\"empty\" time\u003d\"202605020048\"\u003e\u003centities\u003e\u003cdata-source id\u003d\"sqlite_jdbc-19de39dfca7-158850b60f8f7a02\"\u003e\u003centity id\u003d\"1\" name\u003d\"merch\" fq-name\u003d\"merch\" order\u003d\"0\" color-bg\u003d\"128,64,32\" border-width\u003d\"3\" x\u003d\"233\" y\u003d\"52\"/\u003e\u003c/data-source\u003e\u003c/entities\u003e\u003crelations/\u003e\u003c/diagram\u003e"}}}}},
+	"connection-types": {
+		"dev": {
+			"name": "Development",
+			"color": "255,255,255",
+			"description": "Regular development database",
+			"auto-commit": true,
+			"confirm-execute": false,
+			"confirm-data-change": false,
+			"smart-commit": false,
+			"smart-commit-recover": true,
+			"auto-close-transactions": true,
+			"close-transactions-period": 1800,
+			"auto-close-connections": true,
+			"close-connections-period": 14400
+		}
+	}
+}
