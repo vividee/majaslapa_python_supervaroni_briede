@@ -2,20 +2,23 @@
 {% block title %}{{merch["name"]}} - MiniVeikals{% endblock %}
 {% block content %}
 <div class="merch-show">
-    <img class="merch-show_img" src="{{ url_for('static', filename='images/merch/'+merch['image']) }}" alt="{{ merch['name'] }}">
     <div>
+        <img class="merch_show_img" src="{{ url_for('static', filename='images/merch/'+merch['image']) }}" alt="{{ merch['name'] }}">
+    </div>    
+    <div class="content-right">
         <h2>{{merch['name']}}</h2>
-      
-         {% if merch["hero_name"] and merch["team_name"] %}
-            <p>{{ merch["hero_name"] }} </p>
-            <p>Komanda: {{ merch["team_name"] }}</p>
-        {% elif merch["hero_name"] %}
-            <p>{{ merch["hero_name"] }}</p>
-        {% elif merch["name"] %}
-            <p>{{ merch["team_name"] }}</p>
-        {% endif %}
-
-        <p>{{merch['description']}}</p>
+        <div class="details-group">
+            {% if merch["hero_name"] and merch["team_name"] %}
+                <p><b>Varonis:</b> {{ merch["hero_name"] }} </p>
+                <p><b>Komanda:</b> {{ merch["team_name"] }}</p>
+            {% elif merch["hero_name"] %}
+                <p><b>Varonis:</b>  {{ merch["hero_name"] }}</p>
+            {% elif merch["name"] %}
+                <p><b>Komanda:</b> {{ merch["team_name"] }}</p>
+            {% endif %}
+            
+                <p>{{merch['description']}}</p>
+        </div>
     </div>
 </div>
 {% endblock %}

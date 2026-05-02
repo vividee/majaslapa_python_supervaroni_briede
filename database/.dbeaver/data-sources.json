@@ -1,19 +1,6 @@
 {
 	"folders": {},
 	"connections": {
-		"sqlite_jdbc-19de5fd151f-739a5a8ad49f4d2d": {
-			"provider": "sqlite",
-			"driver": "sqlite_jdbc",
-			"name": "database_sv_eb 2",
-			"save-password": true,
-			"configuration": {
-				"database": "C:\\Users\\bried\\Documents\\python_majaslapa_sv\\database_sv_eb",
-				"url": "jdbc:sqlite:C:\\Users\\bried\\Documents\\python_majaslapa_sv\\database_sv_eb",
-				"configurationType": "MANUAL",
-				"type": "dev",
-				"closeIdleConnection": true
-			}
-		},
 		"sqlite_jdbc-19de63cdd21-53539412677ca9c3": {
 			"provider": "sqlite",
 			"driver": "sqlite_jdbc",

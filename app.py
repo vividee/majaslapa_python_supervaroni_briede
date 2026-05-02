@@ -2,6 +2,7 @@ from flask import Flask, render_template
 import sqlite3
 from pathlib import Path
 
+
 app = Flask(__name__)
 
 def get_db_connection():
@@ -20,8 +21,42 @@ def powers():
     return render_template("powers.html")
 
 @app.route("/teams")
-def teams():
-    return render_template("teams.html")
+def teams_index():
+    conn = get_db_connection()
+    
+    teams = conn.execute(
+       """
+        SELECT
+            teams.id AS team_id,
+            teams.team AS team_name,
+            teams.site,
+            teams.image,
+            heroes.id AS hero_id,
+            heroes.hero_name AS hero_name
+        FROM teams
+        LEFT JOIN hero_teams ON teams.id = hero_teams.team_id
+        LEFT JOIN heroes ON hero_teams.hero_id = heroes.id
+        ORDER BY teams.team
+        """
+    ).fetchall()
+    
+    teams_data = {}
+    
+    
+    for team in teams:
+        team_id = team["team_id"]
+        if team_id not in teams_data:
+            teams_data[team_id] = {
+                "name": team["team_name"],
+                "image": team["image"],
+                "site": team["site"],
+                "heroes": []
+            }
+        
+        if team["hero_name"]:
+            teams_data[team_id]["heroes"].append(team["hero_name"])
+    
+    return render_template("teams.html", teams=teams_data.values())
 
 
 @app.route("/merch")

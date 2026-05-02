@@ -2,7 +2,9 @@
 {% block title %}MiniVeikals{% endblock %}
 {% block content %}
 <h2>404 - Lapa nav atrasta!</h2>
-<p>Atvainojiet, meklētā lapa neeksistē.</p>
-<img src="/static/images/sad_superman.png" alt="sad_superman">
-<a href="{{ url_for('home') }}">Atpakaļ uz sākumlapu</a>
+<div class="four0four">
+    <p>Atvainojiet, meklētā lapa neeksistē. Pārbaudiet vai pareizi uzrakstījāt adresi!</p>
+    <img src="/static/images/sad_superman.png" alt="sad_superman">
+    <a href="{{ url_for('home') }}">Atpakaļ uz sākumlapu</a>
+</div>
 {% endblock %}

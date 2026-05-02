@@ -1,6 +1,32 @@
 {% extends "base.html" %}
-{% block title %}Evelīnas mīļāko varoņu enciklopēdija{% endblock %}
+{% block title %}Evelīnas mīļāko varoņu enciklopēdija: Komandas{% endblock %}
 {% block content %}
-<h1>Evelīnas mīļāko varoņu enciklopēdija</h1>
-<p>Teams!!</p> 
+<h2>Komandas, kuras sastāvā ir mani mīļākie varoņi.</h2>
+<table class="team_table" border="1">
+    <tr>
+        <th>Komanda</th>
+        <th>Varoņi, kas ir daļa no minētajām komandām</th>
+        <th>Attēls</th>
+        <th>Papildus</th>
+    </tr>
+    {% for team in teams %}
+        <tr>
+                <td>{{ team.name }}</td>
+                <td> 
+                    {% for hero in team.heroes %}
+                        {{ hero }}{% if not loop.last %}, {% endif %}
+                    {% endfor %}
+                </td>
+                
+                <td>
+                    <img src="{{ url_for('static', filename='images/teams/'+team.image) }}" alt="{{ team.name }}">
+                </td>
+
+                <td> 
+                    <a href="{{ team.site }}" target="_blank">Uzzināt vairāk...</a>
+                </td>
+        </tr>
+
+    {% endfor %}
+</table>
 {% endblock %}
