@@ -14,7 +14,51 @@ def get_db_connection():
 
 @app.route("/")
 def home():
-    return render_template("index.html")
+    conn = get_db_connection()
+    
+    heroes = conn.execute(
+    
+    """
+    SELECT 
+        heroes.id AS hero_id,
+        heroes.hero_name,
+        heroes.image,
+        heroes.civilian_name,
+        heroes.description AS hero_description,
+        powers.power_name,
+        powers.power_description
+        
+    FROM heroes
+    LEFT JOIN hero_powers ON heroes.id = hero_powers.hero_id
+    LEFT JOIN powers ON hero_powers.power_id = powers.id
+    """
+    ).fetchall()
+    
+    heroes_dict = {}
+    
+    for hero in heroes:
+        hero_id = hero["hero_id"]
+        
+        if hero_id not in heroes_dict:
+            heroes_dict[hero_id] = {
+                "hero_name": hero["hero_name"],
+                "image": hero["image"],
+                "hero_description": hero["hero_description"],
+                "civilian_name": hero["civilian_name"],
+                "powers": []
+            }
+            
+        if hero["power_name"]:
+            heroes_dict[hero_id]["powers"].append({
+                "name": hero["power_name"],
+                "description": hero["power_description"]
+            })
+            
+    heroes = list(heroes_dict.values())
+    
+    return render_template("index.html", heroes=heroes)
+
+
 
 @app.route("/powers")
 def powers():

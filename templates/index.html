@@ -1,7 +1,39 @@
 {% extends "base.html" %}
 {% block title %}Evelīnas mīļāko varoņu enciklopēdija{% endblock %}
 {% block content %}
-<h2>Evelīnas mīļāko varoņu enciklopēdija</h2>
-<p>Laipni lūgti manā mīļako varoņu enciklopēdija!</p>
+<h2>Sveicināti, mīļie lasītāji!</h2>
+<div class="center-paragraph">
+    <p>Laipni lūgti manā mīļako varoņu enciklopēdijā. Tajā apkopots manu mīļāko varoņu spējas, vārdi, pārstāvētās komandas, kā arī viss, kas man pieder ar supervaroņu simboliku. </p>
+    <p>Papildus tam, ka jūs varat uzzināt informāciju par maniem mīļākajiem varoņiem, jūs varat atsāt atsauksmes par viņiem un vēlāk tās apskatīt. Vai nav brīnišķīgi?</p>
+    <p>Izbaudiet šo mājaslapu, jo tā prasīja daudzas negulētas naktis, asaras un dusmu lēkmes, jo it kā pareizs kods pēkšņi nestrādāja.</p>
+</div>
+<h2>Mani mīļākie varoņi</h2>
+
+<div  class="heroes-container">
+   {% for hero in heroes %}
+    <div class="hero-card">
+        <img src="{{ url_for('static', filename='images/heroes/'+hero.image) }}" alt="{{ hero.hero_name }}">
+        <div class="hero-left">
+            <h2>{{ hero.hero_name }}</h2>
+            <p><strong>Īstā identitāte:</strong> {{ hero.civilian_name }}</p>
+            <p>{{ hero.hero_description }}</p>
+        </div>
+        <div class="hero-right">  
+            <div>
+                <p class="powers-title"><strong>Powers:</strong></p>
+                {% for power in hero.powers %}
+                        <div class="power-item">
+                            <span class="power-name">{{ power.name }}</span>
+                            <div class="power-description">
+                                {{ power.description }}
+                            </div>
+                        </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
 
 {% endblock %}
