@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 {% block title %}Evelīnas mīļāko varoņu enciklopēdija: Merch{% endblock %}
 {% block content %}
-<h1>Merch</h1>
+<h2>Mans supervaroņu merch apkopojums!</h2>
 <p></p>
-<ul>
-    {% for product in products %}
+<ul class="merch">
+    {% for merc in merch %}
     <li>
-        <a href="{{url_for('products_show', product_id= product['id'])}}">
-            <h3>{{product["name"]}}</h3>
-            <img src="{{url_for('static', filename='images/'~product['image'])}}" alt="{{product['name']}}">
+        <a href="{{url_for('merch_show', merch_id= merc['id'])}}">
+            <img class="each_image" src="{{url_for('static', filename='images/merch/'~merc['image'])}}" alt="{{merc['name']}}">
+            <h3>{{merc['name']}}</h3>
         </a>
     </li>
     {% endfor %}

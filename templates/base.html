@@ -5,15 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %}</title>
-    <link rel="shortcut icon" href="{{url_for('static', filename='/images/favicon.png')}}" type="image/x-icon">
-    <link rel="stylesheet" href="{{url_for('static', filename='style1.css')}}">
+    <link rel="shortcut icon" href="{{url_for('static', filename='/images/favicon/favicon.png')}}" type="image/x-icon">
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Playwrite+BR:wght@100..400&display=swap" rel="stylesheet">
     <title>Evelīnas mīļāko varoņu enciklopēdija</title>
 
 </head>
 
 <body>
     <header>
-        <h1>Evelīnas mīļāko varoņu enciklopēdija</h1>
+        <h1 class="big_header">Evelīnas mīļāko varoņu enciklopēdija</h1>
         <nav>
             <ul>
                 <li><a href="/">Sākums</a></li>
@@ -26,11 +29,11 @@
             </ul>
         </nav>
     </header>
-    <main>
+    <main class="content">
         {% block content %}{% endblock %}
     </main>
     <footer>
-        <p>&copy; Evelīna Briede 12.i2</p>
+        <p class="copyright">&copy; Evelīna Briede 12.i2</p>
     </footer>
 </body>
 

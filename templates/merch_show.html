@@ -1,23 +1,21 @@
 {% extends "base.html" %}
-{% block title %}{{product["name"]}} - MiniVeikals{% endblock %}
+{% block title %}{{merch["name"]}} - MiniVeikals{% endblock %}
 {% block content %}
-<div class="products-show">
-    <img src="{{ url_for('static', filename='images/merch/'+merch['images']) }}" alt="{{ merch['name'] }}">
+<div class="merch-show">
+    <img class="merch-show_img" src="{{ url_for('static', filename='images/merch/'+merch['image']) }}" alt="{{ merch['name'] }}">
     <div>
         <h2>{{merch['name']}}</h2>
-        {% if hero and team %}
-            <p>{{ hero.name }} - {{ team.name }}</p>
-
-        {% elif team and not hero %}
-            <p>{{ team.name }}</p>
-
-        {% elif hero and not team %}
-            <p>{{ hero.name }}</p>
-
-        {% else %}
-            <p>No data</p>
+      
+         {% if merch["hero_name"] and merch["team_name"] %}
+            <p>{{ merch["hero_name"] }} </p>
+            <p>Komanda: {{ merch["team_name"] }}</p>
+        {% elif merch["hero_name"] %}
+            <p>{{ merch["hero_name"] }}</p>
+        {% elif merch["name"] %}
+            <p>{{ merch["team_name"] }}</p>
         {% endif %}
-        <p>{{product['manufacturer']}}</p>
+
+        <p>{{merch['description']}}</p>
     </div>
 </div>
 {% endblock %}

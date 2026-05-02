@@ -5,7 +5,7 @@ from pathlib import Path
 app = Flask(__name__)
 
 def get_db_connection():
-    db = Path(__file__).parent / "database/database_sv_eb.db"  # kurai datubazei
+    db = Path(__file__).parent / "database/database_sv_ebb.db"  # kurai datubazei
     conn = sqlite3.connect(db)  # konekcija datubazie
     conn.row_factory = sqlite3.Row  # kā vārdnīca parādas
     return conn
@@ -16,11 +16,11 @@ def home():
     return render_template("index.html")
 
 @app.route("/powers")
-def about():
+def powers():
     return render_template("powers.html")
 
 @app.route("/teams")
-def about():
+def teams():
     return render_template("teams.html")
 
 
@@ -32,28 +32,32 @@ def merch_index():
         "SELECT * FROM merch"
     ).fetchall()  # izpilda sql vaicājumu, kas atalasa visus productus
 
-    conn.close  # aizver savienojumu ar datubāzi
+    conn.close()  # aizver savienojumu ar datubāzi
 
-    return render_template("products.html", merch=merch)
+    return render_template("merch.html", merch=merch)
 
 
-@app.route("/products/<int:product_id>")
-def products_show(product_id):
+@app.route("/merch/<int:merch_id>")
+def merch_show(merch_id):
     conn = get_db_connection()
 
-    product = conn.execute(
+    merch = conn.execute(
         """
-        SELECT products.*, manufacturers.name AS manufacturer
-        FROM products 
-        LEFT JOIN manufacturers ON products.manufacturer_id = manufacturers.id
-        WHERE products.id = ? 
+        SELECT
+            merch.*,
+            heroes.hero_name AS hero_name,
+            teams.team AS team_name
+        FROM merch
+        LEFT JOIN heroes ON merch.hero_id = heroes.id
+        LEFT JOIN teams ON merch.team_id = teams.id
+        WHERE merch.id = ?
         """,
-        (product_id,),
+        (merch_id,),
     ).fetchone()
 
     conn.close()
 
-    return render_template("products_show.html", product=product)
+    return render_template("merch_show.html", merch=merch)
 
 @app.errorhandler(404)
 def page_not_found(e):
