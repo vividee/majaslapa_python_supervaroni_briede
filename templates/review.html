@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Atsauksmes{% endblock %}
+
+{% block content %}
+<h2>Atsauksmes</h2>
+
+<a href="/addreview"><h3 class="add-review">Pievienot atsauksmi!</h3></a>
+
+{% if reviews|length == 0 %}
+    <div class="no_review">
+        <h3>Vēl nav nevienas atsauksmes &#128532;</h3>
+        <img src="/static/images/sad_batman.png" alt="sad batman">  
+    </div>
+{% else %}
+    {% for review in reviews %}
+        <div class="review-card">
+            <h3>{{ review.title }}</h3>
+            <p><strong>Varonis:</strong> {{ review.hero_name or "Nav izvēlēts" }}</p>
+            <p>{{ review.review_text }}</p>
+            <p>⭐ {{ review.rating }}/5</p>
+
+            <a href="/edit_review/{{ review.id }}">Rediģēt</a>
+            <a href="/delete_review/{{ review.id }}">Izdzēst</a>
+        </div>
+    {% endfor %}
+{% endif %}
+
+{% endblock %}

@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect
 import sqlite3
 from pathlib import Path
 
@@ -58,11 +58,86 @@ def home():
     
     return render_template("index.html", heroes=heroes)
 
+@app.route("/reviews")
+def reviews():
+    conn = get_db_connection()
+    reviews = conn.execute("""
+        SELECT 
+            reviews.*,
+            heroes.hero_name
+        FROM reviews
+        LEFT JOIN heroes ON reviews.hero_id = heroes.id
+    """).fetchall()
+    
+    conn.close()
+    
+    return render_template("review.html", reviews=reviews)
 
+@app.route("/addreview", methods=["GET", "POST"])
+def addreview():
+    conn = get_db_connection()
+    
+    if request.method == "POST":
+        title = request.form.get("title")
+        text = request.form.get("review_text")
+        rating = request.form.get("rating")
+        hero_id = request.form.get("hero_id")
 
-@app.route("/powers")
-def powers():
-    return render_template("powers.html")
+        conn.execute(
+            "INSERT INTO reviews (title, review_text, rating, hero_id) VALUES (?, ?, ?, ?)",
+            (title, text, rating, hero_id)
+        )
+        conn.commit()
+        conn.close()
+
+        return redirect("/reviews")
+
+    heroes = conn.execute("SELECT id, hero_name FROM heroes").fetchall()
+    conn.close()
+
+    return render_template("addreview.html", heroes=heroes)
+
+@app.route("/edit_review/<int:id>")
+def edit_review(id):
+    conn = get_db_connection()
+    
+    review = conn.execute(
+        "SELECT * FROM reviews WHERE id = ?", (id,)
+    ).fetchone()
+
+    heroes = conn.execute(
+        "SELECT id, hero_name FROM heroes"
+    ).fetchall()
+
+    conn.close()
+
+    return render_template("edit_review.html", review=review, heroes=heroes)
+
+@app.route("/update_review/<int:id>", methods=["POST"])
+def update_review(id):
+    title = request.form["title"]
+    text = request.form["review_text"]
+    rating = request.form["rating"]
+    hero_id = request.form.get("hero_id")
+
+    conn = get_db_connection()
+    conn.execute(
+        "UPDATE reviews SET title=?, review_text=?, rating=?, hero_id=? WHERE id=?",
+        (title, text, rating, hero_id, id)
+    )
+    conn.commit()
+    conn.close()
+
+    return redirect("/reviews")
+
+@app.route("/delete_review/<int:id>")
+def delete_review(id):
+    conn = get_db_connection()
+    conn.execute("DELETE FROM reviews WHERE id = ?", (id,))
+    conn.commit()
+    conn.close()
+
+    return redirect("/reviews")
 
 @app.route("/teams")
 def teams_index():

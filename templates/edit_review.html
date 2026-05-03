@@ -1,0 +1,29 @@
+{% block content %}
+<h2>Rediģē atsauksmi</h2>
+
+<form class="review-card" action="/update_review/{{ review.id }}" method="POST">
+    <label>Title:</label><br>
+    <input type="text" name="title" value="{{ review.title }}" required><br><br>
+
+    <label>Varonis:</label><br>
+    <select name="hero_id">
+    {% for hero in heroes %}
+        <option value="{{ hero.id }}"
+            {% if hero.id == review.hero_id %}selected{% endif %}>
+            {{ hero.hero_name }}
+        </option>
+    {% endfor %}
+    </select><br><br>
+
+    <label>Review:</label><br>
+    <textarea name="review_text" required>{{ review.review_text }}</textarea><br><br>
+
+    <label>Rating:</label><br>
+    <input type="number" name="rating" min="1" max="5" value="{{ review.rating }}" required><br><br>
+
+    <button type="submit">Atjaunināt</button>
+
+</form>
+
+<a href="/reviews">⬅ Atpakaļ</a>
+{% endblock %}
