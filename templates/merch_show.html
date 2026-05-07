@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}{{merch["name"]}} - MiniVeikals{% endblock %}
+{% block title %}{{merch["name"]}} - Evelīnas mīļāko varoņu enciklopēdija{% endblock %}
 {% block content %}
 <div class="merch-show">
     <div>
@@ -13,7 +13,7 @@
                 <p><b>Komanda:</b> {{ merch["team_name"] }}</p>
             {% elif merch["hero_name"] %}
                 <p><b>Varonis:</b>  {{ merch["hero_name"] }}</p>
-            {% elif merch["name"] %}
+            {% elif merch["team_name"] %}
                 <p><b>Komanda:</b> {{ merch["team_name"] }}</p>
             {% endif %}
             

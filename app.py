@@ -7,12 +7,12 @@ app = Flask(__name__)
 
 def get_db_connection():
     db = Path(__file__).parent / "database/database_sv_ebb.db"  # kurai datubazei
-    conn = sqlite3.connect(db)  # konekcija datubazie
+    conn = sqlite3.connect(db)  # konekcija datubazei
     conn.row_factory = sqlite3.Row  # kā vārdnīca parādas
     return conn
 
 
-@app.route("/")
+@app.route("/") #sākuma lapa
 def home():
     conn = get_db_connection()
     
@@ -58,7 +58,7 @@ def home():
     
     return render_template("index.html", heroes=heroes)
 
-@app.route("/reviews")
+@app.route("/reviews") #atsauksmes
 def reviews():
     conn = get_db_connection()
     reviews = conn.execute("""
@@ -97,7 +97,7 @@ def addreview():
 
     return render_template("addreview.html", heroes=heroes)
 
-@app.route("/edit_review/<int:id>")
+@app.route("/edit_review/<int:id>") #rediģē atsaukmes
 def edit_review(id):
     conn = get_db_connection()
     
@@ -113,7 +113,7 @@ def edit_review(id):
 
     return render_template("edit_review.html", review=review, heroes=heroes)
 
-@app.route("/update_review/<int:id>", methods=["POST"])
+@app.route("/update_review/<int:id>", methods=["POST"]) #atjauno atsauksmes
 def update_review(id):
     title = request.form["title"]
     text = request.form["review_text"]
@@ -130,7 +130,7 @@ def update_review(id):
 
     return redirect("/reviews")
 
-@app.route("/delete_review/<int:id>")
+@app.route("/delete_review/<int:id>") #izdzēs atsauksmes
 def delete_review(id):
     conn = get_db_connection()
     conn.execute("DELETE FROM reviews WHERE id = ?", (id,))
@@ -218,4 +218,4 @@ def page_not_found(e):
     return render_template("404.html")
 
 if __name__=="__main__": 
-    app.run(debug=True)
+    app.run()

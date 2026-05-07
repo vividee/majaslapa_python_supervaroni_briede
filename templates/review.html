@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Atsauksmes{% endblock %}
+{% block title %}Evelīnas mīļāko varoņu enciklopēdija: Atsauksmes{% endblock %}
 
 {% block content %}
 <h2>Atsauksmes</h2>
@@ -15,7 +15,7 @@
     {% for review in reviews %}
         <div class="review-card">
             <h3>{{ review.title }}</h3>
-            <p><strong>Varonis:</strong> {{ review.hero_name or "Nav izvēlēts" }}</p>
+            <p><strong>Varonis:</strong> {{ review.hero_name }}</p>
             <p>{{ review.review_text }}</p>
             <p>⭐ {{ review.rating }}/5</p>
 
